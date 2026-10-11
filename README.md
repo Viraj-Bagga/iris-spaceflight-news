@@ -1,6 +1,19 @@
-# Iris
+<p align="center">
+  <img src="docs/iris-avatar.png" width="120" alt="Iris, the bot's avatar">
+</p>
 
-A Discord bot that watches spaceflight news for AFROTC i5 squadrons. Every ten minutes it pulls new articles, keeps the ones that matter to Space Force-track cadets, writes a two to three line summary, and posts it to every server that has installed it.
+<h1 align="center">Iris</h1>
+
+<p align="center">
+  A Discord bot that watches spaceflight news for AFROTC i5 squadrons.<br>
+  <a href="https://viraj-bagga.github.io/iris-spaceflight-news/"><b>Landing page</b></a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="#running-it">Run it</a>
+</p>
+
+Every ten minutes Iris pulls new articles, keeps the ones that matter to Space Force-track cadets, writes a two to three line summary, and posts it to every server that has installed it.
+
+![The Iris landing page: the Iris character above the IRIS wordmark and an "Add Iris to your server" button](docs/screenshots/hero.png)
 
 ## How it works
 
@@ -39,12 +52,24 @@ The bot creates `space_articles.db` on first run. Invite it with the URL in `web
 
 ## Website
 
-`website/` is the landing page squadrons use to add the bot: Vite, React, TypeScript, Tailwind and Framer Motion.
+`website/` is the landing page squadrons use to add the bot: Vite, React, TypeScript, Tailwind and Framer Motion. It deploys to GitHub Pages from `main` on every change (`.github/workflows/pages.yml`).
+
+| How it works | Setup |
+| --- | --- |
+| ![The three-step How it works section](docs/screenshots/how-it-works.png) | ![The Setup section with a preview of an Iris post in Discord](docs/screenshots/setup.png) |
+
+<p align="center">
+  <img src="docs/screenshots/phone-hero.png" width="220" alt="The landing page hero on a phone">
+  &nbsp;
+  <img src="docs/screenshots/phone-setup.png" width="220" alt="The setup section on a phone">
+</p>
 
 ```bash
 cd website && npm install && npm run dev
 ```
 
+The screenshots are captured from a production build by `scripts/screenshots.mjs` (`.github/workflows/screenshots.yml`).
+
 ## Status
 
-Runs locally. Always-on hosting is the next step.
+The bot runs locally. Next up: [always-on hosting](../../issues/3) and [tracking how many squadrons have installed it](../../issues/4).
