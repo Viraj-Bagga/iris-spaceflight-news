@@ -81,3 +81,9 @@
       0 0 20px rgba(94, 168, 255, 0.3);
   }
 }
+
+/* The character art sits on its own starfield; fade its square edges into the page's. */
+.iris-figure {
+  mask-image: radial-gradient(circle at 50% 48%, #000 50%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at 50% 48%, #000 50%, transparent 70%);
+}
