@@ -1,0 +1,57 @@
+name: Screenshots
+
+# Builds the landing page, captures each section in Chromium, and pushes the
+# PNGs to the ci/screenshots branch so README images come from the real site.
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - main
+      - ci/screenshots
+    paths:
+      - "website/**"
+      - "scripts/screenshots.mjs"
+      - ".github/workflows/screenshots.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Build the site
+        working-directory: website
+        run: |
+          npm ci
+          npm run build
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.56.0
+          npx playwright install --with-deps chromium
+
+      - name: Capture
+        run: |
+          (cd website && npx vite preview --port 4173 --strictPort &)
+          npx --yes wait-on@8 http://localhost:4173/ --timeout 60000
+          mkdir -p shots
+          node scripts/screenshots.mjs http://localhost:4173/ shots
+
+      - name: Push to ci/screenshots
+        run: |
+          cd shots
+          git init -q -b ci/screenshots
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Screenshots from ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" ci/screenshots

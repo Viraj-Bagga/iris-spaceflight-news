@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { DISCORD_INSTALL_URL, SECTION_IDS } from "../lib/constants";
 import { ParallaxSection, Reveal, SectionHeading } from "./ParallaxSection";
+import irisAvatar from "../assets/iris-avatar.webp";
 import { CtaButton } from "./CtaButton";
 
 const STEPS = [
@@ -133,9 +134,13 @@ function DiscordPreview() {
   return (
     <div className="w-full max-w-sm rounded-xl border border-white/10 bg-space-navy/60 p-4 text-left shadow-[0_0_40px_rgba(94,168,255,0.08)]">
       <div className="flex items-center gap-2">
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-iris-blue/20 font-display text-xs font-semibold text-iris-blue-bright">
-          I
-        </span>
+        <img
+          src={irisAvatar}
+          alt=""
+          width={28}
+          height={28}
+          className="h-7 w-7 shrink-0 rounded-full ring-1 ring-iris-blue/30"
+        />
         <span className="font-display text-sm font-semibold text-text">Iris</span>
         <span className="rounded bg-iris-blue/20 px-1.5 py-0.5 font-body text-[10px] font-medium uppercase tracking-wide text-iris-blue-bright">
           Bot

@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { DISCORD_INSTALL_URL, SECTION_IDS } from "../lib/constants";
 import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 import { CtaButton } from "./CtaButton";
+import irisFull from "../assets/iris-full.webp";
 
 function scrollToId(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -54,6 +55,18 @@ export function Hero() {
         style={prefersReducedMotion ? undefined : { scale, y, opacity }}
         className="flex flex-col items-center"
       >
+        <motion.img
+          src={irisFull}
+          alt="Iris, a small winged messenger in a white and gold robe"
+          width={768}
+          height={768}
+          draggable={false}
+          className="iris-figure mb-1 h-44 w-44 select-none sm:h-56 sm:w-56"
+          animate={prefersReducedMotion ? undefined : { y: [0, -8, 0] }}
+          transition={
+            prefersReducedMotion ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }
+          }
+        />
         <h1 className="text-glow-blue font-display text-[4.25rem] font-semibold leading-none tracking-tight text-iris-blue sm:text-[6.5rem] md:text-[8.5rem]">
           IRIS
         </h1>
