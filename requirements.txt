@@ -1,0 +1,5 @@
+langgraph
+openai
+requests
+python-dotenv
+discord.py
